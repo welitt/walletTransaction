@@ -1,0 +1,31 @@
+CREATE TABLE `wallet` (
+  `id` int(11) NOT NULL,
+  `employee_id` int(20) NOT NULL,
+  `money` decimal(10,2) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `creator` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updator` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+
+
+CREATE TABLE `wallet_expend` (
+  `id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
+  `wallet_id` int(11) NOT NULL,
+  `pre_money` decimal(10,2) DEFAULT NULL,
+  `after_money` decimal(10,2) DEFAULT NULL,
+  `cost` decimal(10,2) DEFAULT NULL,
+  `refund` bit(1) DEFAULT NULL,
+  `info` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `creator` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updator` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKhvpi8gteslg4o9ppu52v4v1s0` (`wallet_id`),
+  CONSTRAINT `FKhvpi8gteslg4o9ppu52v4v1s0` FOREIGN KEY (`wallet_id`) REFERENCES `wallet` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
